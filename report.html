@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>student_intervention-ian2017</title>
+<title>student_intervention</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -11814,7 +11814,6 @@ The output of the model is "need intervention" or "not need intervention" is a b
 <span class="c1"># Read student data</span>
 <span class="n">student_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;student-data.csv&quot;</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Student data read successfully!</span><span class="se">\n</span><span class="s2">&quot;</span>
-<span class="c1">#print getPrintOptions</span>
 </pre></div>
 
 </div>
@@ -12455,36 +12454,9 @@ Feature values:
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">y_all</span> <span class="o">=</span> <span class="n">y_all0</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="s1">&#39;yes&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-<span class="n">y_all</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>0    0
-1    0
-2    1
-3    1
-4    1
-5    1
-6    1
-7    0
-8    1
-9    1
-Name: passed, dtype: int64</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -12615,8 +12587,9 @@ Name: passed, dtype: int64</pre>
 <span class="n">num_test</span> <span class="o">=</span> <span class="n">X_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">num_train</span>
 
 <span class="c1"># TODO: Shuffle and split the dataset into the number of training and testing points above</span>
-<span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">63</span><span class="p">)</span>
-<span class="n">X_all_pca</span><span class="p">,</span> <span class="n">y_all</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="n">X_all_pca</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">63</span><span class="p">)</span>
+<span class="n">RANDOM_STATE</span> <span class="o">=</span> <span class="mi">63</span>
+<span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="n">RANDOM_STATE</span><span class="p">)</span>
+<span class="n">X_all_pca</span><span class="p">,</span> <span class="n">y_all</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="n">X_all_pca</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="n">RANDOM_STATE</span><span class="p">)</span>
 
 <span class="n">X_train</span> <span class="o">=</span> <span class="n">X_all</span><span class="p">[:</span><span class="n">num_train</span><span class="p">]</span>
 <span class="n">X_test</span> <span class="o">=</span> <span class="n">X_all</span><span class="p">[</span><span class="n">num_train</span><span class="p">:]</span>
@@ -12934,28 +12907,28 @@ PCA Testing set has 95 samples.
         <span class="s1">&#39;param&#39;</span><span class="p">:{}</span>
     <span class="p">},{</span>
         <span class="s1">&#39;clf&#39;</span><span class="p">:</span><span class="n">DecisionTreeClassifier</span><span class="p">,</span>
-        <span class="s1">&#39;param&#39;</span><span class="p">:{}</span>
+        <span class="s1">&#39;param&#39;</span><span class="p">:{</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span><span class="n">RANDOM_STATE</span><span class="p">}</span>
     <span class="p">},{</span>
         <span class="s1">&#39;clf&#39;</span><span class="p">:</span><span class="n">BaggingClassifier</span><span class="p">,</span>
-        <span class="s1">&#39;param&#39;</span><span class="p">:{</span><span class="s1">&#39;base_estimator&#39;</span><span class="p">:</span><span class="n">KNeighborsClassifier</span><span class="p">(),</span><span class="s1">&#39;max_samples&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;max_features&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">}</span>
+        <span class="s1">&#39;param&#39;</span><span class="p">:{</span><span class="s1">&#39;base_estimator&#39;</span><span class="p">:</span><span class="n">KNeighborsClassifier</span><span class="p">(),</span><span class="s1">&#39;max_samples&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;max_features&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;random_state&#39;</span><span class="p">:</span><span class="n">RANDOM_STATE</span><span class="p">}</span>
     <span class="p">},{</span>
         <span class="s1">&#39;clf&#39;</span><span class="p">:</span><span class="n">AdaBoostClassifier</span><span class="p">,</span>
-        <span class="s1">&#39;param&#39;</span><span class="p">:{}</span>
+        <span class="s1">&#39;param&#39;</span><span class="p">:{</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span><span class="n">RANDOM_STATE</span><span class="p">}</span>
     <span class="p">},{</span>
         <span class="s1">&#39;clf&#39;</span><span class="p">:</span><span class="n">RandomForestClassifier</span><span class="p">,</span>
-        <span class="s1">&#39;param&#39;</span><span class="p">:{}</span>
+        <span class="s1">&#39;param&#39;</span><span class="p">:{</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span><span class="n">RANDOM_STATE</span><span class="p">}</span>
     <span class="p">},{</span>
         <span class="s1">&#39;clf&#39;</span><span class="p">:</span><span class="n">GradientBoostingClassifier</span><span class="p">,</span>
-        <span class="s1">&#39;param&#39;</span><span class="p">:{}</span>
+        <span class="s1">&#39;param&#39;</span><span class="p">:{</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span><span class="n">RANDOM_STATE</span><span class="p">}</span>
     <span class="p">},{</span>
         <span class="s1">&#39;clf&#39;</span><span class="p">:</span><span class="n">SGDClassifier</span><span class="p">,</span>
-        <span class="s1">&#39;param&#39;</span><span class="p">:{}</span>
+        <span class="s1">&#39;param&#39;</span><span class="p">:{</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span><span class="n">RANDOM_STATE</span><span class="p">}</span>
     <span class="p">},{</span>
         <span class="s1">&#39;clf&#39;</span><span class="p">:</span><span class="n">SVC</span><span class="p">,</span>
-        <span class="s1">&#39;param&#39;</span><span class="p">:{}</span>
+        <span class="s1">&#39;param&#39;</span><span class="p">:{</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span><span class="n">RANDOM_STATE</span><span class="p">}</span>
     <span class="p">},{</span>
         <span class="s1">&#39;clf&#39;</span><span class="p">:</span><span class="n">LogisticRegression</span><span class="p">,</span>
-        <span class="s1">&#39;param&#39;</span><span class="p">:{}</span>
+        <span class="s1">&#39;param&#39;</span><span class="p">:{</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span><span class="n">RANDOM_STATE</span><span class="p">}</span>
     <span class="p">}</span>
 <span class="p">]</span> 
 </pre></div>
@@ -13013,99 +12986,99 @@ PCA Testing set has 95 samples.
       <td>SVC</td>
       <td>0.782051</td>
       <td>0.809524</td>
-      <td>0.009904</td>
-      <td>0.008161</td>
-      <td>0.002517</td>
+      <td>0.006543</td>
+      <td>0.005001</td>
+      <td>0.001636</td>
     </tr>
     <tr>
       <th>1</th>
       <td>BaggingClassifier</td>
-      <td>0.778523</td>
-      <td>0.824268</td>
-      <td>0.011544</td>
-      <td>0.037898</td>
-      <td>0.016102</td>
+      <td>0.760000</td>
+      <td>0.821355</td>
+      <td>0.013030</td>
+      <td>0.026548</td>
+      <td>0.012403</td>
     </tr>
     <tr>
       <th>2</th>
       <td>KNeighborsClassifier</td>
       <td>0.741259</td>
       <td>0.821429</td>
-      <td>0.000649</td>
-      <td>0.011932</td>
-      <td>0.004453</td>
+      <td>0.000592</td>
+      <td>0.009317</td>
+      <td>0.003501</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>RandomForestClassifier</td>
-      <td>0.706767</td>
-      <td>0.992593</td>
-      <td>0.021669</td>
-      <td>0.004885</td>
-      <td>0.006474</td>
-    </tr>
-    <tr>
-      <th>4</th>
       <td>GradientBoostingClassifier</td>
       <td>0.704225</td>
       <td>0.983133</td>
-      <td>0.086170</td>
-      <td>0.000730</td>
-      <td>0.000312</td>
+      <td>0.068863</td>
+      <td>0.000672</td>
+      <td>0.000300</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>4</th>
       <td>AdaBoostClassifier</td>
       <td>0.671533</td>
       <td>0.853828</td>
-      <td>0.082946</td>
-      <td>0.004130</td>
-      <td>0.002987</td>
+      <td>0.068245</td>
+      <td>0.004133</td>
+      <td>0.002992</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>5</th>
       <td>BernoulliNB</td>
       <td>0.656489</td>
       <td>0.786070</td>
-      <td>0.038292</td>
-      <td>0.000601</td>
+      <td>0.002146</td>
+      <td>0.000630</td>
       <td>0.000264</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>6</th>
       <td>LogisticRegression</td>
       <td>0.647059</td>
       <td>0.835616</td>
-      <td>0.001800</td>
-      <td>0.000179</td>
-      <td>0.000166</td>
+      <td>0.001398</td>
+      <td>0.000135</td>
+      <td>0.000101</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>DecisionTreeClassifier</td>
+      <td>0.639344</td>
+      <td>1.000000</td>
+      <td>0.001601</td>
+      <td>0.000184</td>
+      <td>0.000129</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>DecisionTreeClassifier</td>
-      <td>0.640000</td>
-      <td>1.000000</td>
-      <td>0.001903</td>
-      <td>0.000185</td>
-      <td>0.000124</td>
+      <td>RandomForestClassifier</td>
+      <td>0.635659</td>
+      <td>0.990148</td>
+      <td>0.017938</td>
+      <td>0.003963</td>
+      <td>0.003902</td>
     </tr>
     <tr>
       <th>9</th>
       <td>SGDClassifier</td>
-      <td>0.585366</td>
-      <td>0.766497</td>
-      <td>0.000765</td>
-      <td>0.019275</td>
-      <td>0.000160</td>
+      <td>0.578512</td>
+      <td>0.712329</td>
+      <td>0.000666</td>
+      <td>0.000176</td>
+      <td>0.000121</td>
     </tr>
     <tr>
       <th>10</th>
       <td>GaussianNB</td>
       <td>0.259740</td>
       <td>0.261603</td>
-      <td>0.000621</td>
-      <td>0.000334</td>
-      <td>0.000212</td>
+      <td>0.000547</td>
+      <td>0.000471</td>
+      <td>0.000221</td>
     </tr>
   </tbody>
 </table>
@@ -13163,102 +13136,102 @@ PCA Testing set has 95 samples.
   <tbody>
     <tr>
       <th>0</th>
-      <td>LogisticRegression</td>
+      <td>BaggingClassifier</td>
       <td>0.784314</td>
-      <td>0.804928</td>
-      <td>0.000534</td>
-      <td>0.000048</td>
-      <td>0.000035</td>
+      <td>0.817814</td>
+      <td>0.009441</td>
+      <td>0.010704</td>
+      <td>0.007535</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>SVC</td>
-      <td>0.782051</td>
-      <td>0.809524</td>
-      <td>0.003581</td>
-      <td>0.002132</td>
-      <td>0.000693</td>
+      <td>LogisticRegression</td>
+      <td>0.784314</td>
+      <td>0.804928</td>
+      <td>0.000463</td>
+      <td>0.000046</td>
+      <td>0.000033</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>BernoulliNB</td>
-      <td>0.776316</td>
-      <td>0.807377</td>
-      <td>0.012056</td>
-      <td>0.000128</td>
-      <td>0.000085</td>
+      <td>SVC</td>
+      <td>0.782051</td>
+      <td>0.809524</td>
+      <td>0.002880</td>
+      <td>0.001671</td>
+      <td>0.000560</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>BaggingClassifier</td>
-      <td>0.768212</td>
-      <td>0.813765</td>
-      <td>0.012754</td>
-      <td>0.011842</td>
-      <td>0.009787</td>
+      <td>BernoulliNB</td>
+      <td>0.776316</td>
+      <td>0.807377</td>
+      <td>0.000597</td>
+      <td>0.000120</td>
+      <td>0.000090</td>
     </tr>
     <tr>
       <th>4</th>
       <td>GaussianNB</td>
       <td>0.743243</td>
       <td>0.792208</td>
-      <td>0.000413</td>
-      <td>0.000108</td>
-      <td>0.000084</td>
+      <td>0.000387</td>
+      <td>0.000138</td>
+      <td>0.000092</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>KNeighborsClassifier</td>
-      <td>0.736111</td>
-      <td>0.824834</td>
-      <td>0.000373</td>
-      <td>0.008068</td>
-      <td>0.001116</td>
+      <td>DecisionTreeClassifier</td>
+      <td>0.737705</td>
+      <td>1.000000</td>
+      <td>0.001465</td>
+      <td>0.000070</td>
+      <td>0.000045</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>AdaBoostClassifier</td>
-      <td>0.735294</td>
-      <td>0.886311</td>
-      <td>0.086207</td>
-      <td>0.004033</td>
-      <td>0.002851</td>
+      <td>KNeighborsClassifier</td>
+      <td>0.736111</td>
+      <td>0.824834</td>
+      <td>0.000415</td>
+      <td>0.004499</td>
+      <td>0.001086</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>SGDClassifier</td>
-      <td>0.732394</td>
-      <td>0.748299</td>
-      <td>0.000428</td>
-      <td>0.000055</td>
-      <td>0.000035</td>
+      <td>AdaBoostClassifier</td>
+      <td>0.735294</td>
+      <td>0.886311</td>
+      <td>0.070511</td>
+      <td>0.003670</td>
+      <td>0.002775</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>DecisionTreeClassifier</td>
-      <td>0.731707</td>
-      <td>1.000000</td>
-      <td>0.001859</td>
-      <td>0.000077</td>
-      <td>0.000043</td>
-    </tr>
-    <tr>
-      <th>9</th>
       <td>GradientBoostingClassifier</td>
       <td>0.731034</td>
       <td>0.973747</td>
-      <td>0.042062</td>
-      <td>0.000448</td>
-      <td>0.000175</td>
+      <td>0.036777</td>
+      <td>0.000352</td>
+      <td>0.000163</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>SGDClassifier</td>
+      <td>0.731034</td>
+      <td>0.750562</td>
+      <td>0.000333</td>
+      <td>0.000043</td>
+      <td>0.000045</td>
     </tr>
     <tr>
       <th>10</th>
       <td>RandomForestClassifier</td>
-      <td>0.706767</td>
-      <td>0.992665</td>
-      <td>0.021975</td>
-      <td>0.004861</td>
-      <td>0.004422</td>
+      <td>0.711111</td>
+      <td>0.995098</td>
+      <td>0.018411</td>
+      <td>0.003826</td>
+      <td>0.003863</td>
     </tr>
   </tbody>
 </table>
@@ -13281,10 +13254,10 @@ PCA Testing set has 95 samples.
 <span class="n">models</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span>
         <span class="s1">&#39;clf&#39;</span><span class="p">:</span><span class="n">SVC</span><span class="p">,</span>
-        <span class="s1">&#39;param&#39;</span><span class="p">:{}</span>
+        <span class="s1">&#39;param&#39;</span><span class="p">:{</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span><span class="n">RANDOM_STATE</span><span class="p">}</span>
     <span class="p">},{</span>
         <span class="s1">&#39;clf&#39;</span><span class="p">:</span><span class="n">BaggingClassifier</span><span class="p">,</span>
-        <span class="s1">&#39;param&#39;</span><span class="p">:{</span><span class="s1">&#39;base_estimator&#39;</span><span class="p">:</span><span class="n">KNeighborsClassifier</span><span class="p">(),</span><span class="s1">&#39;max_samples&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;max_features&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">}</span>
+        <span class="s1">&#39;param&#39;</span><span class="p">:{</span><span class="s1">&#39;base_estimator&#39;</span><span class="p">:</span><span class="n">KNeighborsClassifier</span><span class="p">(),</span><span class="s1">&#39;max_samples&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;max_features&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span><span class="n">RANDOM_STATE</span> <span class="p">}</span>
     <span class="p">},{</span>
         <span class="s1">&#39;clf&#39;</span><span class="p">:</span><span class="n">KNeighborsClassifier</span><span class="p">,</span>
         <span class="s1">&#39;param&#39;</span><span class="p">:{}</span>
@@ -13349,27 +13322,27 @@ PCA Testing set has 95 samples.
       <td>SVC</td>
       <td>0.782051</td>
       <td>0.850575</td>
-      <td>0.001531</td>
-      <td>0.001140</td>
-      <td>0.001294</td>
+      <td>0.001351</td>
+      <td>0.000734</td>
+      <td>0.000640</td>
     </tr>
     <tr>
       <th>1</th>
       <td>BaggingClassifier</td>
-      <td>0.782051</td>
-      <td>0.853801</td>
-      <td>0.011460</td>
-      <td>0.011122</td>
-      <td>0.010572</td>
+      <td>0.766234</td>
+      <td>0.855491</td>
+      <td>0.009768</td>
+      <td>0.009045</td>
+      <td>0.008454</td>
     </tr>
     <tr>
       <th>2</th>
       <td>KNeighborsClassifier</td>
       <td>0.731034</td>
       <td>0.883436</td>
-      <td>0.000390</td>
-      <td>0.002055</td>
-      <td>0.001777</td>
+      <td>0.000310</td>
+      <td>0.001441</td>
+      <td>0.001403</td>
     </tr>
   </tbody>
 </table>
@@ -13421,27 +13394,27 @@ PCA Testing set has 95 samples.
       <td>SVC</td>
       <td>0.782051</td>
       <td>0.809524</td>
-      <td>0.005056</td>
-      <td>0.003840</td>
-      <td>0.001834</td>
+      <td>0.003720</td>
+      <td>0.002473</td>
+      <td>0.001248</td>
     </tr>
     <tr>
       <th>1</th>
       <td>BaggingClassifier</td>
-      <td>0.739726</td>
-      <td>0.822785</td>
-      <td>0.012054</td>
-      <td>0.018913</td>
-      <td>0.012635</td>
+      <td>0.751678</td>
+      <td>0.813456</td>
+      <td>0.010521</td>
+      <td>0.015176</td>
+      <td>0.009986</td>
     </tr>
     <tr>
       <th>2</th>
       <td>KNeighborsClassifier</td>
       <td>0.724638</td>
       <td>0.832215</td>
-      <td>0.000411</td>
-      <td>0.005339</td>
-      <td>0.002807</td>
+      <td>0.000403</td>
+      <td>0.003892</td>
+      <td>0.002194</td>
     </tr>
   </tbody>
 </table>
@@ -13493,27 +13466,27 @@ PCA Testing set has 95 samples.
       <td>SVC</td>
       <td>0.782051</td>
       <td>0.809524</td>
-      <td>0.014645</td>
-      <td>0.008683</td>
-      <td>0.002534</td>
+      <td>0.007329</td>
+      <td>0.006024</td>
+      <td>0.001722</td>
     </tr>
     <tr>
       <th>1</th>
       <td>BaggingClassifier</td>
       <td>0.760000</td>
-      <td>0.824490</td>
-      <td>0.010868</td>
-      <td>0.033753</td>
-      <td>0.015360</td>
+      <td>0.821355</td>
+      <td>0.010395</td>
+      <td>0.027040</td>
+      <td>0.012360</td>
     </tr>
     <tr>
       <th>2</th>
       <td>KNeighborsClassifier</td>
       <td>0.741259</td>
       <td>0.821429</td>
-      <td>0.000529</td>
-      <td>0.011408</td>
-      <td>0.004057</td>
+      <td>0.000510</td>
+      <td>0.008777</td>
+      <td>0.003256</td>
     </tr>
   </tbody>
 </table>
@@ -13554,22 +13527,22 @@ PCA Testing set has 95 samples.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.006781</td>
-<td style="text-align:center">0.008010</td>
+<td style="text-align:center">0.001124</td>
+<td style="text-align:center">0.000637</td>
 <td style="text-align:center">0.850575</td>
 <td style="text-align:center">0.782051</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.008553</td>
-<td style="text-align:center">0.001851</td>
+<td style="text-align:center">0.004117</td>
+<td style="text-align:center">0.001263</td>
 <td style="text-align:center">0.809524</td>
 <td style="text-align:center">0.782051</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.010077</td>
-<td style="text-align:center">0.002621</td>
+<td style="text-align:center">0.007259</td>
+<td style="text-align:center">0.001696</td>
 <td style="text-align:center">0.809524</td>
 <td style="text-align:center">0.782051</td>
 </tr>
@@ -13588,24 +13561,24 @@ PCA Testing set has 95 samples.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.013442</td>
-<td style="text-align:center">0.012959</td>
-<td style="text-align:center">0.860465</td>
-<td style="text-align:center">0.774194</td>
+<td style="text-align:center">0.000289</td>
+<td style="text-align:center">0.001374</td>
+<td style="text-align:center">0.855491</td>
+<td style="text-align:center">0.766234</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.012517</td>
-<td style="text-align:center">0.012346</td>
-<td style="text-align:center">0.830769</td>
-<td style="text-align:center">0.763158</td>
+<td style="text-align:center">0.010534</td>
+<td style="text-align:center">0.009759</td>
+<td style="text-align:center">0.813456</td>
+<td style="text-align:center">0.751678</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.011654</td>
-<td style="text-align:center">0.015597</td>
-<td style="text-align:center">0.812121</td>
-<td style="text-align:center">0.766234</td>
+<td style="text-align:center">0.009705</td>
+<td style="text-align:center">0.012190</td>
+<td style="text-align:center">0.821355</td>
+<td style="text-align:center">0.760000</td>
 </tr>
 </tbody>
 </table>
@@ -13622,22 +13595,22 @@ PCA Testing set has 95 samples.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.000357</td>
-<td style="text-align:center">0.001840</td>
+<td style="text-align:center">0.000289</td>
+<td style="text-align:center">0.001374</td>
 <td style="text-align:center">0.883436</td>
 <td style="text-align:center">0.731034</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.000461</td>
-<td style="text-align:center">0.002817</td>
+<td style="text-align:center">0.000366</td>
+<td style="text-align:center">0.002147</td>
 <td style="text-align:center">0.832215</td>
 <td style="text-align:center">0.724638</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.000723</td>
-<td style="text-align:center">0.004248</td>
+<td style="text-align:center">0.000476</td>
+<td style="text-align:center">0.003182</td>
 <td style="text-align:center">0.821429</td>
 <td style="text-align:center">0.741259</td>
 </tr>
@@ -13699,7 +13672,9 @@ PCA Testing set has 95 samples.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>The model was trained with preprocessed data. The accuracy of the model was checked using a part of the orginal data set that was not used in the training, this insures thta the model generalises well. To make predictions the raw data is passed to the preprocessor than to the</p>
+<p>SVM is about to find a decision boundary that separates two classes (eg. graduated -green vs. not graduated-red)  as shown on the illustration below</p>
+<p><img src="http://www.statsoft.com/textbook/graphics/SVMIntro1.gif" alt="schematic">
+In order to find this boundary the model is trained with data that was properly preporecessed. Furthermore, the model's parameters were tuned to produce the best decision boundary that will allow more accurate predictions. Once the model is trained and we are satisfaied with its performance, it can be used to predict if the a student is likely to gaduate or not based on the collected data.</p>
 
 </div>
 </div>
@@ -13737,25 +13712,30 @@ PCA Testing set has 95 samples.
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 <span class="c1">#(estimator, param_grid, scoring=None, fit_params=None, n_jobs=1, iid=True, refit=True, cv=None, verbose=0, </span>
 <span class="c1">#pre_dispatch=&#39;2*n_jobs&#39;, error_score=&#39;raise&#39;)</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">normalize</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span>
 
 <span class="c1"># TODO: Create the parameters list you wish to tune</span>
 <span class="c1">#(C=1.0, kernel=&#39;rbf&#39;, degree=3, gamma=&#39;auto&#39;, coef0=0.0, shrinking=True, probability=False, tol=0.001, </span>
 <span class="c1">#cache_size=200, class_weight=None, verbose=False, max_iter=-1, decision_function_shape=None, random_state=None)</span>
 
-<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;kernel&#39;</span><span class="p">:(</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;C&#39;</span><span class="p">:[</span><span class="mi">1000</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.01</span><span class="p">]</span>
-<span class="p">}</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">C_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
+<span class="n">gamma_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
+<span class="n">kernel</span> <span class="o">=</span><span class="p">(</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">)</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="n">gamma_range</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C_range</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">)</span>
+
 
 <span class="c1"># TODO: Initialize the classifier</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">63</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
 
 <span class="c1"># TODO: Make an f1 scoring function using &#39;make_scorer&#39; </span>
 <span class="n">f1_scorer</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">f1_score</span><span class="p">)</span>
 
 <span class="c1"># TODO: Perform grid search on the classifier using the f1_scorer as the scoring method</span>
-<span class="n">grid_obj</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span><span class="n">parameters</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">f1_scorer</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">grid_obj</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">f1_scorer</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 
 <span class="c1"># TODO: Fit the grid search object to the training data and find the optimal parameters</span>
 <span class="n">grid_obj</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -13779,14 +13759,110 @@ PCA Testing set has 95 samples.
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Tuned model has a training F1 score of 0.8095.
+<pre>Fitting 5 folds for each of 507 candidates, totalling 2535 fits
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[Parallel(n_jobs=8)]: Done 808 tasks      | elapsed:    4.6s
+[Parallel(n_jobs=8)]: Done 2520 out of 2535 | elapsed:   24.9s remaining:    0.1s
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Tuned model has a training F1 score of 0.8040.
 Tuned model has a testing F1 score of 0.7821.
 
 Best model
-SVC(C=1, cache_size=200, class_weight=None, coef0=0.0,
-  decision_function_shape=None, degree=3, gamma=&#39;auto&#39;, kernel=&#39;rbf&#39;,
+SVC(C=0.31622776601683794, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape=None, degree=3, gamma=100.0, kernel=&#39;sigmoid&#39;,
   max_iter=-1, probability=False, random_state=63, shrinking=True,
   tol=0.001, verbose=False)
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[Parallel(n_jobs=8)]: Done 2535 out of 2535 | elapsed:   25.5s finished
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Considering-the-imabalnced-dataset">Considering the imabalnced dataset<a class="anchor-link" href="#Considering-the-imabalnced-dataset">&#182;</a></h3><p>I expected a better result using the imlearn librery but it seems that the result is not that good!?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">imblearn</span> <span class="kn">import</span> <span class="n">over_sampling</span> <span class="k">as</span> <span class="n">os</span>
+<span class="kn">from</span> <span class="nn">imblearn</span> <span class="kn">import</span> <span class="n">pipeline</span> <span class="k">as</span> <span class="n">pl</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">imblearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report_imbalanced</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">make_pipeline</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">SMOTE</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">),</span>
+                            <span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mf">0.3162</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">))</span>
+<span class="c1"># Split the data</span>
+<span class="n">X_train_im</span><span class="p">,</span> <span class="n">X_test_im</span><span class="p">,</span> <span class="n">y_train_im</span><span class="p">,</span> <span class="n">y_test_im</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.24</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+
+<span class="n">X_train_im_n</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">X_train_im</span><span class="p">)</span>
+<span class="n">X_test_im_n</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">X_test_im</span><span class="p">)</span>
+
+<span class="c1"># Train the classifier with balancing</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_im_n</span><span class="p">,</span> <span class="n">y_train_im</span><span class="p">)</span>
+
+<span class="c1"># Test the classifier and get the prediction</span>
+<span class="n">y_pred_bal</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_im_n</span><span class="p">)</span>
+
+<span class="c1"># Show the classification report</span>
+<span class="k">print</span><span class="p">(</span><span class="n">classification_report_imbalanced</span><span class="p">(</span><span class="n">y_test_im</span><span class="p">,</span> <span class="n">y_pred_bal</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>                   pre       rec       spe        f1       geo       iba       sup
+
+          0       0.20      0.03      0.94      0.06      0.37      0.13        29
+          1       0.69      0.94      0.03      0.79      0.37      0.14        66
+
+avg / total       0.54      0.66      0.31      0.57      0.37      0.14        95
+
 </pre>
 </div>
 </div>
@@ -13812,7 +13888,7 @@ SVC(C=1, cache_size=200, class_weight=None, coef0=0.0,
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
 The final F<sub>1</sub> is 0.7821 that is equal to the untuned model. It seems that for this data set the optimal hyperparameters are the default ones</p>
-<p>However, if I consider the fact the many of the features are correlated and using PCA the winner is the logistic classifier</p>
+<p>However, if I consider the fact the many of the features are correlated and using PCA the winner are the Bagging and Logistic classifier</p>
 
 </div>
 </div>
